@@ -36,6 +36,10 @@ public class MeshClick : MonoBehaviour {
 
 		buttons = new GameObject[]{bodyMainButton, muscleMainButton, lipsMainButton, eyesMainButton, headMainButton, earsMainButton, tailMainButton, tongueMainButton, pawMainButton};
 
+		CloseAllButtons ();
+	}
+
+	public void CloseAllButtons() {
 		foreach (GameObject b in buttons) {
 			b.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0f, 0f);
 		}
@@ -60,20 +64,21 @@ public class MeshClick : MonoBehaviour {
 
 
 	void OnMouseOver() {
-		hovering = true;
-
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
 		RaycastHit dogHit;
 		bool cast = Physics.Raycast (ray, out dogHit, 100);
-		currentPart = dogHit.collider.gameObject;
-		Renderer rend = currentPart.GetComponent<Renderer> ();
-		if (cast) {
-			rend.material = highlightColor;
+		if (dogHit.transform.IsChildOf(transform) || dogHit.transform == transform) {
+			currentPart = dogHit.collider.gameObject;
+			hovering = true;
+			Renderer rend = currentPart.GetComponent<Renderer> ();
+			if (cast) {
+				rend.material = highlightColor;
+			}
+			if (lastPart != null && currentPart != lastPart) {
+				lastPart.GetComponent<Renderer> ().material = originalColor;
+			}
+			lastPart = currentPart;
 		}
-		if (lastPart != null && currentPart != lastPart) {
-			lastPart.GetComponent<Renderer> ().material = originalColor;
-		}
-		lastPart = currentPart;
 	}
 
     void OnMouseDown()

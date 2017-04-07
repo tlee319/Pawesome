@@ -2,13 +2,14 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EmotionLogic.cs">
     <Files>
-      <File FileName="Assets\Scripts\MeshClick.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ZoomOut.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MeshClick.cs" Line="70" Column="38" />
+      <File FileName="Assets\Scripts\ZoomOut.cs" Line="45" Column="6" />
       <File FileName="Assets\Scripts\SelectColorChange.cs" Line="31" Column="13" />
       <File FileName="Assets\Scripts\DogEmotionLogic.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\AppearanceAttribute.cs" Line="33" Column="33" />
-      <File FileName="Assets\Scripts\EmotionLogic.cs" Line="259" Column="83" />
+      <File FileName="Assets\Scripts\EmotionLogic.cs" Line="329" Column="81" />
       <File FileName="Assets\Scripts\DropDownMenu.cs" Line="14" Column="16" />
+      <File FileName="Assets\Scripts\AttributeHandler.cs" Line="375" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

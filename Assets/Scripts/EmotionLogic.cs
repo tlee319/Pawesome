@@ -16,7 +16,12 @@ public class EmotionLogic : MonoBehaviour {
 
 	public static bool updated = false;
 	public bool askQuestions = false;
+	public static bool behavioralQuestionsAsked = false;
+	public bool debugBool = false;
 
+	public GameObject meshClick;
+
+	public int thisCount;
 	public static class EmotionLogicEngine {
 		public static string currentEmotion = "";
 
@@ -40,14 +45,13 @@ public class EmotionLogic : MonoBehaviour {
 				string emotionsToAdd = emotionDictionary[addingAttribute.attributeCode ()];
 				// If the attribute indicates more than one emotion, break it up and then update it
 				if (emotionsToAdd.Contains ("|")) {
-					char[] separator = { '|' };
-					string[] emotions = emotionsToAdd.Split (separator);
+					string[] emotions = emotionsToAdd.Split (new char[]{ '|' }); // Taken a char[] as an input
 
 					for (int x = 0; x < emotions.Length; x++) {
-						emotionFrequency [emotions [x]] = emotionFrequency [emotions [x]] + 1;
+						emotionFrequency [emotions [x]] += 1;
 					}
 				} else {
-					emotionFrequency [emotionsToAdd] = emotionFrequency [emotionsToAdd] + 1;
+					emotionFrequency [emotionsToAdd] += 1;
 				}
 
 			}
@@ -65,14 +69,13 @@ public class EmotionLogic : MonoBehaviour {
 					// Decrement in emotionFrequency dictionary
 					string emotionsToRemove = emotionDictionary[att.attributeCode ()];
 					if (emotionsToRemove.Contains ("|")) {
-						char[] separator = { '|' };
-						string[] emotions = emotionsToRemove.Split (separator);
+						string[] emotions = emotionsToRemove.Split (new char[]{ '|' });
 
 						for (int x = 0; x < emotions.Length; x++) {
-							emotionFrequency [emotions [x]] = emotionFrequency [emotions [x]] - 1;
+							emotionFrequency [emotions [x]] -= 1;
 						}
 					} else {
-						emotionFrequency [emotionsToRemove] = emotionFrequency [emotionsToRemove] - 1;
+						emotionFrequency [emotionsToRemove] -= 1;
 					}
 					break;
 				}
@@ -84,22 +87,6 @@ public class EmotionLogic : MonoBehaviour {
 		public static void updatePossibleEmotionList() {
 			// Evaluate or revaluate the emotion
 			listOfPossibleEmotions.Clear ();
-
-			// Recount the emotion frequency
-			/*
-			emotionFrequency ["Happy"] = 0;
-			emotionFrequency ["Relaxed & Neutral"] = 0;
-			emotionFrequency ["Playful"] = 0;
-			emotionFrequency ["Curiosity"] = 0;
-			emotionFrequency ["Cautious"] = 0;
-			emotionFrequency ["Fear"] = 0;
-			emotionFrequency ["Anxiety"] = 0;
-			emotionFrequency ["Arousal"] = 0;
-			emotionFrequency ["Stress Signal"] = 0;
-			emotionFrequency ["Alert"] = 0;
-			emotionFrequency ["Aggression"] = 0;
-			emotionFrequency ["Confidence"] = 0;
-			*/
 
 			// Add and recount
 			foreach (Attribute att in listOfAttributes) {
@@ -122,7 +109,7 @@ public class EmotionLogic : MonoBehaviour {
 			updated = true;
 		}
 
-		// Not really used
+		// Not really used, determine later if it needs to be removed
 		public static string getCurrentEmotion() {
 			return listOfPossibleEmotions.ToString();
 		}
@@ -142,6 +129,7 @@ public class EmotionLogic : MonoBehaviour {
 			emotionFrequency.Add ("Confidence", 0);
 			emotionFrequency.Add ("Arousal", 0);
 
+			// For some reason this prevents errors.
 			emotionFrequency ["Happy"] = 0;
 			emotionFrequency ["Relaxed & Neutral"] = 0;
 			emotionFrequency ["Playful"] = 0;
@@ -225,21 +213,15 @@ public class EmotionLogic : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		debugBool = behavioralQuestionsAsked;
 		if (updated == true) {
-			resultText.GetComponent<Text> ().text = "Possible Emotions: ";
-
-			// Later look more into SortedDictionary<K,V> to avoid these lines of shi*** code
-			// ^ignore this
+			resultText.GetComponent<Text> ().text = "";
 
 			foreach (string s in listOfPlausibleEmotions) {
 				resultText.GetComponent<Text> ().text += (s + ", ");
 			}
 
 			updated = false;
-
-			foreach (string s in emotionFrequency.Keys) {
-				//resultText.GetComponent<Text> ().text += (emotionFrequency[s] + ", ");
-			}
 
 			// If any emotions in the list of emotions come up more than twice, add it to the list of plausible emotions
 			foreach (string emotion in emotionFrequency.Keys) {
@@ -254,24 +236,72 @@ public class EmotionLogic : MonoBehaviour {
 
 			// As soon as an emotion is added to a list of plausible emotions, prompt the user with behavioral questions
 			if (askQuestions == true) {
-				//prompt the user with behavioral questions
-				GameObject firstButton = behaviorQuestions.transform.GetChild(0).gameObject;
-				behaviorQuestions.GetComponent<RectTransform> ().sizeDelta = new Vector2 (700f, 300f);
-				firstButton.transform.GetComponentInChildren<Text> ().text = "If you observe any of these behaviors... ";
+				// change this number to 2
+				if (listOfPlausibleEmotions.Count > 1) {
+					//prompt the user with behavioral questions
+					GameObject firstButton = behaviorQuestions.transform.GetChild(0).gameObject;
+					behaviorQuestions.GetComponent<RectTransform> ().sizeDelta = new Vector2 (700f, 300f);
+					firstButton.transform.GetComponentInChildren<Text> ().text = "Choose behaviors that you observe";
 
-				// Dynamically create buttons for behavioral questions
-				foreach (string emotion in listOfPlausibleEmotions) {
-					firstButton.transform.GetComponentInChildren<Text> ().text += emotion + ", ";
-					foreach (string question in behavioralQuestions[emotion]) {
-						GameObject newButton = (GameObject)Instantiate (firstButton, behaviorQuestions.transform);
-						newButton.transform.GetComponentInChildren<Text> ().text = question;
+					// Dynamically create buttons for behavioral questions
+					foreach (string emotion in listOfPlausibleEmotions) {
+						firstButton.transform.GetComponentInChildren<Text> ().text += emotion + ", ";
+						foreach (string question in behavioralQuestions[emotion]) {
+							GameObject newButton = (GameObject)Instantiate (firstButton, behaviorQuestions.transform);
+							newButton.transform.GetComponentInChildren<Text> ().text = question;
+						}
+					}
+					firstButton.transform.GetComponentInChildren<Text> ().fontStyle = FontStyle.Bold;
+					firstButton.transform.GetComponentInChildren<Text> ().color = Color.white;
+					firstButton.GetComponent<Image> ().color = Color.blue;
+
+					behavioralQuestionsAsked = true;
+				}
+				else {
+					meshClick.GetComponent<MeshClick> ().CloseAllButtons ();
+					resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (400f, 300f);
+					foreach (string s in listOfPlausibleEmotions) {
+						resultText.GetComponent<Text> ().text += (s + ", ");
 					}
 				}
-
-				firstButton.transform.GetComponentInChildren<Text> ().fontStyle = FontStyle.Bold;
-				firstButton.transform.GetComponentInChildren<Text> ().color = Color.white;
-				firstButton.GetComponent<Image> ().color = Color.blue;
 			}
+		}
+
+		List<string> attributeHandlerBehaviorAttributes = GetComponent<AttributeHandler> ().behaviorAttributes;
+		thisCount = 0;
+		if (attributeHandlerBehaviorAttributes.Count != thisCount || attributeHandlerBehaviorAttributes.Count > 1) {
+			thisCount = attributeHandlerBehaviorAttributes.Count;
+			debugBool = true;
+			behavioralQuestionsAsked = false;
+			Dictionary<string, int> finalEmotionCount = new Dictionary<string, int> (); 
+
+			foreach (string pe in listOfPlausibleEmotions) {
+				finalEmotionCount.Add (pe, 0);
+				finalEmotionCount [pe] = 0;
+			}
+
+			foreach (string b in GetComponent<AttributeHandler>().behaviorAttributes) {
+				foreach (string e in behavioralQuestions.Keys) {
+					string[] listBehavior = behavioralQuestions [e];
+					for (int x = 0; x < listBehavior.Length; x++) {
+						if (listBehavior [x].Equals (b)) {
+							finalEmotionCount [e] += 1;
+						}
+					}
+				}
+			}
+
+			int largestNumber = 0;
+			string largestEmotion = "";
+			foreach (string fe in finalEmotionCount.Keys) {
+				if (finalEmotionCount[fe] > largestNumber) {
+					largestNumber = finalEmotionCount [fe];
+					largestEmotion = fe;
+				}
+			}
+
+			resultText.GetComponent<Text> ().text = (largestEmotion);
+			resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (300f, 300f);
 		}
 	}
 }

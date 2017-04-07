@@ -7,6 +7,7 @@ public class ZoomOut : MonoBehaviour {
 
     public Button fullView;
     public Camera main;
+	public GameObject behaviorQuestions;
 
     private Vector3 pos;
     private bool clicked;

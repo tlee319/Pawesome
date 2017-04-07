@@ -49,12 +49,11 @@
      <Compile Include="Assets\Scripts\AppearanceAttribute.cs" />
      <Compile Include="Assets\Scripts\Attribute.cs" />
      <Compile Include="Assets\Scripts\AttributeHandler.cs" />
+     <Compile Include="Assets\Scripts\BehaviorQuestionButtons.cs" />
      <Compile Include="Assets\Scripts\BehavioralAttribute.cs" />
-     <Compile Include="Assets\Scripts\DogEmotionLogic.cs" />
      <Compile Include="Assets\Scripts\DropDownMenu.cs" />
      <Compile Include="Assets\Scripts\EmotionLogic.cs" />
      <Compile Include="Assets\Scripts\MeshClick.cs" />
-     <Compile Include="Assets\Scripts\ResultText.cs" />
      <Compile Include="Assets\Scripts\SelectColorChange.cs" />
      <Compile Include="Assets\Scripts\ZoomOut.cs" />
  <Reference Include="UnityEngine.UI">

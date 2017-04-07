@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AttributeHandler : MonoBehaviour {
-	// This class creates appearance attribute objects and addes it to the EmotionLogicEngine
+	// This class creates appearance attribute objects and adds them to the EmotionLogicEngine
 
-	// These boolean arrays keeps track of which appearance attributes. 
+	// These boolean arrays keep track of appearance attributes button selection status (Clicked or unclicked). 
 	// These are used to color the attribute buttons red or white to indicate selection
 	public bool[] bodySelected;
 	public bool[] muscleSelected;
@@ -17,6 +18,9 @@ public class AttributeHandler : MonoBehaviour {
 	public bool[] headSelected;
 	public bool[] pawSelected;
 
+	public string debudVar = "";
+
+	public List<string> behaviorAttributes;
 	// Use this for initialization
 	// Automatically defaults to all false
 	void Start () {
@@ -29,6 +33,8 @@ public class AttributeHandler : MonoBehaviour {
 		tongueSelected = new bool[3];
 		headSelected = new bool[4];
 		pawSelected = new bool[2];
+
+		behaviorAttributes = new List<string> ();
 	}
 	
 	// Update is called once per frame
@@ -40,6 +46,7 @@ public class AttributeHandler : MonoBehaviour {
 	// These are called in OnClick in appearance button game objects
 	// If they were selected, an attribute object is created and added
 	// If they were deselected, an attribute object is created but used to remove
+	// TODO: condense everything in here into one method if we have time. Very low prioirity
 	public void CreateBody0Attribute() {
 		if (bodySelected [0] == false) {
 			EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute ("Body", 0));
@@ -357,6 +364,14 @@ public class AttributeHandler : MonoBehaviour {
 		} else {
 			EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute ("Paw", 1));
 			pawSelected [1] = false;
+		}
+	}
+
+	public void BehaviorAttributeHandler(Button b) {
+		if (behaviorAttributes.Contains (b.GetComponentInChildren<Text> ().text) == true) {
+			behaviorAttributes.Remove (b.GetComponentInChildren<Text> ().text);
+		} else {
+			behaviorAttributes.Add (b.GetComponentInChildren<Text> ().text);
 		}
 	}
 }

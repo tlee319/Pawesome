@@ -168,10 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 851, y: 327}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -216,9 +216,9 @@ RectTransform:
   - {fileID: 1913969586}
   - {fileID: 1754969915}
   - {fileID: 364239713}
-  - {fileID: 1935785454}
   - {fileID: 1038365464}
   - {fileID: 972977061}
+  - {fileID: 1935785454}
   - {fileID: 387260455}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -248,6 +248,8 @@ MonoBehaviour:
   tongueSelected: 
   headSelected: 
   pawSelected: 
+  debudVar: 
+  behaviorAttributes: []
 --- !u!114 &29390366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +265,9 @@ MonoBehaviour:
   listOfPlausibleEmotions: []
   behaviorQuestions: {fileID: 972977060}
   askQuestions: 0
+  debugBool: 0
+  meshClick: {fileID: 548431021}
+  thisCount: 0
 --- !u!114 &29390367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2595,7 +2600,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 367554884}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 29390365}
+        m_MethodName: BehaviorAttributeHandler
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 367554883}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &367554884
@@ -2846,7 +2862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 800, y: -320}
+  m_AnchoredPosition: {x: 751, y: -608.25}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &387260456
@@ -2862,6 +2878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullView: {fileID: 0}
   main: {fileID: 491896772}
+  behaviorQuestions: {fileID: 0}
 --- !u!114 &387260458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7383,6 +7400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972977061}
   - component: {fileID: 972977062}
+  - component: {fileID: 972977063}
   m_Layer: 5
   m_Name: BehaviorQuestions
   m_TagString: Untagged
@@ -7402,7 +7420,7 @@ RectTransform:
   m_Children:
   - {fileID: 367554881}
   m_Father: {fileID: 29390364}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -7431,6 +7449,19 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &972977063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 972977060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64549e23be3154e4086bc2fcbc49ce21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorQuestionNum: 0
+  canvas: {fileID: 29390360}
 --- !u!1001 &974968594
 Prefab:
   m_ObjectHideFlags: 0
@@ -7977,7 +8008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 29390364}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1038365465
 MonoBehaviour:
@@ -14316,13 +14347,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 29390364}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.328}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30, y: 6}
-  m_SizeDelta: {x: 834, y: 62}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1935785455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14335,7 +14366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.114619374, g: 0.3897059, b: 0.15066522, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14344,18 +14375,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 0
+    m_MaxSize: 50
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Results
+  m_Text: 
 --- !u!222 &1935785456
 CanvasRenderer:
   m_ObjectHideFlags: 0
