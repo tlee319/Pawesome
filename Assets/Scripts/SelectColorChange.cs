@@ -22,7 +22,6 @@ public class SelectColorChange : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		if (GetComponent<AttributeHandler> () != null) {
 			bool[] bodyGO = GetComponent<AttributeHandler> ().bodySelected;
 			for (int x = 0; x < bodyGO.Length; x++) {

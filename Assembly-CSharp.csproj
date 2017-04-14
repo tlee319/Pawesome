@@ -51,11 +51,16 @@
      <Compile Include="Assets\Scripts\AttributeHandler.cs" />
      <Compile Include="Assets\Scripts\BehaviorQuestionButtons.cs" />
      <Compile Include="Assets\Scripts\BehavioralAttribute.cs" />
+     <Compile Include="Assets\Scripts\DisplayImageScript.cs" />
+     <Compile Include="Assets\Scripts\DogStartup.cs" />
      <Compile Include="Assets\Scripts\DropDownMenu.cs" />
      <Compile Include="Assets\Scripts\EmotionLogic.cs" />
      <Compile Include="Assets\Scripts\MeshClick.cs" />
      <Compile Include="Assets\Scripts\SelectColorChange.cs" />
+     <Compile Include="Assets\Scripts\Startup.cs" />
+     <Compile Include="Assets\Scripts\ToggleScript.cs" />
      <Compile Include="Assets\Scripts\ZoomOut.cs" />
+     <None Include="Assets\Fonts\helveticaneue\freefontsdownload.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

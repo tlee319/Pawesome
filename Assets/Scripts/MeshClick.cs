@@ -14,6 +14,7 @@ public class MeshClick : MonoBehaviour {
 	GameObject lastPart;
 	bool hovering;
     bool clicked;
+	bool go = false;
     Vector3 pos;
     Vector3 dfault;
 
@@ -47,12 +48,15 @@ public class MeshClick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!go) {
+			go = GameObject.Find ("okButton").GetComponent<Startup> ().canStart;
+		}
 		if (!hovering && lastPart != null) {
 			lastPart.GetComponent<Renderer> ().material = originalColor;
 		}
 		hovering = false;
 
-        if (clicked)
+		if (go && clicked)
         {
             if (Camera.main.transform.position.z - pos.z > -0.001 && Camera.main.transform.position.z - pos.z < 0.001)
             {
@@ -62,22 +66,37 @@ public class MeshClick : MonoBehaviour {
         }
 	}
 
-
+	//Check if the mouse is hovering over a body part, and if so highlight it.
 	void OnMouseOver() {
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); 
-		RaycastHit dogHit;
-		bool cast = Physics.Raycast (ray, out dogHit, 100);
-		if (dogHit.transform.IsChildOf(transform) || dogHit.transform == transform) {
-			currentPart = dogHit.collider.gameObject;
-			hovering = true;
-			Renderer rend = currentPart.GetComponent<Renderer> ();
-			if (cast) {
-				rend.material = highlightColor;
+		if (go) {
+			//Cast a ray from the camera through the point on the screen where the mouse is, 
+			//and extend it past the screen into the 3D scene.
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition); 
+
+			//Check if this ray hits anything (cast it)
+			RaycastHit dogHit;
+			bool cast = Physics.Raycast (ray, out dogHit, 100);
+
+			//Check if the thing hit is either a body part on the dog or an uncatagorized part part of the dog.
+			if (dogHit.transform.IsChildOf (transform) || dogHit.transform == transform) {
+				currentPart = dogHit.collider.gameObject;
+
+				//Set a flag to be used in Update()
+				hovering = true;
+
+				//Change material based on whether there was actually a raycast for this call
+				Renderer rend = currentPart.GetComponent<Renderer> ();
+				if (cast) {
+					rend.material = highlightColor;
+				}
+
+				//Change material for the previous call of OnMouseOver() back to default 
+				//(makes sure that if you move mouse from one section to another, the first section turns back to the default)
+				if (lastPart != null && currentPart != lastPart) {
+					lastPart.GetComponent<Renderer> ().material = originalColor;
+				}
+				lastPart = currentPart;
 			}
-			if (lastPart != null && currentPart != lastPart) {
-				lastPart.GetComponent<Renderer> ().material = originalColor;
-			}
-			lastPart = currentPart;
 		}
 	}
 
@@ -153,7 +172,7 @@ public class MeshClick : MonoBehaviour {
 		}
     }
 
-	void setEverythingToZero() {
+	public void setEverythingToZero() {
 		foreach (GameObject b in buttons) {
 			b.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0f, 0f);
 		}

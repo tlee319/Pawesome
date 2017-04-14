@@ -22,10 +22,11 @@ public class BehaviorQuestionButtons : MonoBehaviour {
 						transform.GetChild (x).GetComponent<Image> ().color = Color.red;
 						transform.GetChild (x).GetComponentInChildren<Text> ().color = Color.white;
 						break;
-					} else if (x == 0){
-						transform.GetChild (x).GetComponent<Image> ().color = Color.white;
-						transform.GetChild (x).GetComponentInChildren<Text> ().color = Color.black;
-					} else {
+					}// else if (x == 0){
+					//	transform.GetChild (x).GetComponent<Image> ().color = Color.white;
+					//	transform.GetChild (x).GetComponentInChildren<Text> ().color = Color.black;
+					//} 
+					else {
 						transform.GetChild (x).GetComponent<Image> ().color = Color.white;
 						transform.GetChild (x).GetComponentInChildren<Text> ().color = Color.black;
 					}

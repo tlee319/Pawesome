@@ -238,10 +238,11 @@ public class EmotionLogic : MonoBehaviour {
 			if (askQuestions == true) {
 				// change this number to 2
 				if (listOfPlausibleEmotions.Count > 1) {
+					meshClick.GetComponent<MeshClick>().setEverythingToZero ();
 					//prompt the user with behavioral questions
 					GameObject firstButton = behaviorQuestions.transform.GetChild(0).gameObject;
 					behaviorQuestions.GetComponent<RectTransform> ().sizeDelta = new Vector2 (700f, 300f);
-					firstButton.transform.GetComponentInChildren<Text> ().text = "Choose behaviors that you observe";
+					firstButton.transform.GetComponentInChildren<Text> ().text = "Choose behaviors that you observe. Current possible emotions: ";
 
 					// Dynamically create buttons for behavioral questions
 					foreach (string emotion in listOfPlausibleEmotions) {
@@ -252,8 +253,8 @@ public class EmotionLogic : MonoBehaviour {
 						}
 					}
 					firstButton.transform.GetComponentInChildren<Text> ().fontStyle = FontStyle.Bold;
-					firstButton.transform.GetComponentInChildren<Text> ().color = Color.white;
-					firstButton.GetComponent<Image> ().color = Color.blue;
+					firstButton.transform.GetComponentInChildren<Text> ().color = Color.black;
+					firstButton.GetComponent<Image> ().color = Color.white;
 
 					behavioralQuestionsAsked = true;
 				}
@@ -303,5 +304,9 @@ public class EmotionLogic : MonoBehaviour {
 			resultText.GetComponent<Text> ().text = (largestEmotion);
 			resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (300f, 300f);
 		}
+	}
+
+	public void ReloadScene() {
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }

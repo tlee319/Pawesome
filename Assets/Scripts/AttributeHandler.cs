@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class AttributeHandler : MonoBehaviour {
 	// This class creates appearance attribute objects and adds them to the EmotionLogicEngine
@@ -21,6 +22,7 @@ public class AttributeHandler : MonoBehaviour {
 	public string debudVar = "";
 
 	public List<string> behaviorAttributes;
+
 	// Use this for initialization
 	// Automatically defaults to all false
 	void Start () {
@@ -47,6 +49,142 @@ public class AttributeHandler : MonoBehaviour {
 	// If they were selected, an attribute object is created and added
 	// If they were deselected, an attribute object is created but used to remove
 	// TODO: condense everything in here into one method if we have time. Very low prioirity
+
+	public void CreateAttribute(Button b) {
+		string part = b.name.Substring (0,b.name.Length-1);
+		string option = b.name.Substring (b.name.Length-1,1);
+
+		if (part.Equals ("Body")) {
+			for (int x = 0; x < bodySelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (bodySelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						bodySelected [x] = true;
+					}
+				} else {
+					if (bodySelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						bodySelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Muscle")) {
+			for (int x = 0; x < muscleSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (muscleSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						muscleSelected [x] = true;
+					}
+				} else {
+					if (muscleSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						muscleSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Lips")) {
+			for (int x = 0; x < lipsSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (lipsSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						lipsSelected [x] = true;
+					}
+				} else {
+					if (lipsSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						lipsSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Eyes")) {
+			for (int x = 0; x < eyesSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (eyesSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						eyesSelected [x] = true;
+					}
+				} else {
+					if (eyesSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						eyesSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Ears")) {
+			for (int x = 0; x < earsSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (earsSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						earsSelected [x] = true;
+					}
+				} else {
+					if (earsSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						earsSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Tail")) {
+			for (int x = 0; x < tailSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (tailSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						tailSelected [x] = true;
+					}
+				} else {
+					if (tailSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						tailSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Tongue")) {
+			for (int x = 0; x < tongueSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (tongueSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						tongueSelected [x] = true;
+					}
+				} else {
+					if (tongueSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						tongueSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Head")) {
+			for (int x = 0; x < headSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (headSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						headSelected [x] = true;
+					}
+				} else {
+					if (headSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						headSelected [x] = false;
+					}
+				}
+			}
+		} else if (part.Equals ("Paw")) {
+			for (int x = 0; x < pawSelected.Length; x++) {
+				if (x == Int32.Parse (option)) {
+					if (pawSelected [x] == false) {
+						EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						pawSelected [x] = true;
+					}
+				} else {
+					if (pawSelected [x] == true) {
+						EmotionLogic.EmotionLogicEngine.removeAttribute (new AppearanceAttribute (part, Int32.Parse(option)));
+						pawSelected [x] = false;
+					}
+				}
+			}
+		}
+	}
+
+	// Erase this before launch
+	/*
 	public void CreateBody0Attribute() {
 		if (bodySelected [0] == false) {
 			EmotionLogic.EmotionLogicEngine.addAttribute (new AppearanceAttribute ("Body", 0));
@@ -366,12 +504,15 @@ public class AttributeHandler : MonoBehaviour {
 			pawSelected [1] = false;
 		}
 	}
+	*/
 
 	public void BehaviorAttributeHandler(Button b) {
-		if (behaviorAttributes.Contains (b.GetComponentInChildren<Text> ().text) == true) {
-			behaviorAttributes.Remove (b.GetComponentInChildren<Text> ().text);
-		} else {
-			behaviorAttributes.Add (b.GetComponentInChildren<Text> ().text);
+		if (b.GetComponentInChildren<Text> ().text.Contains ("Choose behaviors that you observe. Current possible emotions:") == false) {
+			if (behaviorAttributes.Contains (b.GetComponentInChildren<Text> ().text) == true) {
+				behaviorAttributes.Remove (b.GetComponentInChildren<Text> ().text);
+			} else {
+				behaviorAttributes.Add (b.GetComponentInChildren<Text> ().text);
+			}
 		}
 	}
 }
