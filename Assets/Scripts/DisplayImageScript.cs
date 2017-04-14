@@ -19,12 +19,9 @@ public class DisplayImageScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		button = GetComponent<Button> ();
-		image = GameObject.Find ("attributeImg").GetComponent<RawImage> ();
-		image.texture = imgTexture;
 		image.enabled = false;
 
-		exitButtonObject = GameObject.Find ("exitButton");
-		exitButton = GameObject.Find ("exitButton").GetComponent<Button> ();
+		exitButton = exitButtonObject.GetComponent<Button> ();
 		exitButton.onClick.AddListener (OnClick);
 		exitButtonObject.SetActive (false);
 

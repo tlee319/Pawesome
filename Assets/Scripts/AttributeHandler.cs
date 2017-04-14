@@ -29,7 +29,7 @@ public class AttributeHandler : MonoBehaviour {
 		bodySelected = new bool[6];
 		muscleSelected = new bool[2];
 		lipsSelected = new bool[2];
-		eyesSelected = new bool[4];
+		eyesSelected = new bool[3];
 		earsSelected = new bool[5];
 		tailSelected = new bool[6];
 		tongueSelected = new bool[3];

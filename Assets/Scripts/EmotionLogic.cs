@@ -175,9 +175,8 @@ public class EmotionLogic : MonoBehaviour {
 			emotionDictionary.Add("Lips1", "Aggression");
 
 			emotionDictionary.Add("Eyes0", "Playful");
-			emotionDictionary.Add("Eyes1", "Fear|Stress Signal");
-			emotionDictionary.Add("Eyes2", "Anxiety");
-			emotionDictionary.Add("Eyes3", "Arousal");
+			emotionDictionary.Add("Eyes1", "Fear|Stress Signal|Anxiety");
+			emotionDictionary.Add("Eyes2", "Arousal");
 
 			emotionDictionary.Add("Ears0", "Happy|Relaxed & Neutral");
 			emotionDictionary.Add("Ears1", "Confidence|Playful|Alert");
