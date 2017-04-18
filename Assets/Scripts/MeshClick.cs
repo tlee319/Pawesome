@@ -88,7 +88,7 @@ public class MeshClick : MonoBehaviour {
 			bool cast = Physics.Raycast (ray, out dogHit, 100);
 
 			//Check if the thing hit is either a body part on the dog or an uncatagorized part part of the dog.
-			if (dogHit.transform.IsChildOf (transform) || dogHit.transform == transform) {
+			if (cast && (dogHit.transform.IsChildOf (transform) || dogHit.transform == transform)) {
 				currentPart = dogHit.collider.gameObject;
 
 				//Set a flag to be used in Update()
