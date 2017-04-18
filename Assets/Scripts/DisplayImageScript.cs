@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Created by Jarrod Blanton
 public class DisplayImageScript : MonoBehaviour {
 	public Button button;
 	public Button exitButton;
@@ -15,6 +16,8 @@ public class DisplayImageScript : MonoBehaviour {
 	private float timer;
 	private bool isPressed = false;
 	private bool stillPressed = false;
+
+	public static bool turnOffMeshInteraction = false;
 
 	// Use this for initialization
 	void Start () {
@@ -66,6 +69,9 @@ public class DisplayImageScript : MonoBehaviour {
 		exitButton.onClick.AddListener (OnClick);
 		image.enabled = true;
 		image.color = new Color (255, 255, 255, 255);
+
+		//turn off highlighting and clicking the mesh
+		turnOffMeshInteraction = true;
 	}
 
 	// When user clicks on button, sets the booleans to false. pseudo-destroys button and hides image
@@ -76,6 +82,9 @@ public class DisplayImageScript : MonoBehaviour {
 		exitButtonObject.SetActive(false);
 		image.enabled = false;
 		image.color = new Color (255, 255, 255, 0);
+
+		//turn on highlighting and clicking the mesh
+		turnOffMeshInteraction = false;
 
 	}
 

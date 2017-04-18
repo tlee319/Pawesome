@@ -114,8 +114,26 @@ public class EmotionLogic : MonoBehaviour {
 			return listOfPossibleEmotions.ToString();
 		}
 
+		// This will address the issue where we have emotionFRequency not reseting after
+		// the scene reloads
+		public static void resetEmotionFrequency() {
+			emotionFrequency ["Happy"] = 0;
+			emotionFrequency ["Relaxed & Neutral"] = 0;
+			emotionFrequency ["Playful"] = 0;
+			emotionFrequency ["Curiosity"] = 0;
+			emotionFrequency ["Cautious"] = 0;
+			emotionFrequency ["Fear"] = 0;
+			emotionFrequency ["Anxiety"] = 0;
+			emotionFrequency ["Arousal"] = 0;
+			emotionFrequency ["Stress Signal"] = 0;
+			emotionFrequency ["Alert"] = 0;
+			emotionFrequency ["Aggression"] = 0;
+			emotionFrequency ["Confidence"] = 0;
+		}
+
 		public static void setEmotionDictionary() {
 			// This is called at the start and will update all the necessary dictionaries that will be used.
+			emotionFrequency.Clear();
 			emotionFrequency.Add ("Happy", 0);
 			emotionFrequency.Add ("Relaxed & Neutral", 0);
 			emotionFrequency.Add ("Playfulness", 0);
@@ -130,21 +148,11 @@ public class EmotionLogic : MonoBehaviour {
 			emotionFrequency.Add ("Arousal", 0);
 
 			// For some reason this prevents errors.
-			emotionFrequency ["Happy"] = 0;
-			emotionFrequency ["Relaxed & Neutral"] = 0;
-			emotionFrequency ["Playful"] = 0;
-			emotionFrequency ["Curiosity"] = 0;
-			emotionFrequency ["Cautious"] = 0;
-			emotionFrequency ["Fear"] = 0;
-			emotionFrequency ["Anxiety"] = 0;
-			emotionFrequency ["Arousal"] = 0;
-			emotionFrequency ["Stress Signal"] = 0;
-			emotionFrequency ["Alert"] = 0;
-			emotionFrequency ["Aggression"] = 0;
-			emotionFrequency ["Confidence"] = 0;
+			resetEmotionFrequency();
 
 
 			// Behavior
+			behavioralQuestions.Clear();
 			behavioralQuestions.Add("Happy", new string[]{"Panting", "Relaxed", "Tail Thumping on the floor", "Lying with one paw tucked under"});
 			behavioralQuestions.Add("Relaxed & Neutral", new string[]{"Weight flat on feet"});
 			behavioralQuestions.Add("Playfulness", new string[]{"Jerky and bouncy, bounce around in exaggerated twists and turns", "Dodge around you", "Paw at you", "Jump on you", "Front body lwoered by bent forepaws"});
@@ -160,6 +168,7 @@ public class EmotionLogic : MonoBehaviour {
 			behavioralQuestions.Add("Aggression", new string[]{"Guarding his or her own possesions against family members or guests", "Snap and intentionally miss", "Snarl", "Aggressive barking which is not stopped by your request", "Lunging on or off the leash", "Intentionalyl urinating in the house in your presence", "Bite"});
 
 			// Appearance
+			emotionDictionary.Clear();
 			emotionDictionary.Add("Body0", "Confidence|Cautious|Aggression");
 			emotionDictionary.Add("Body1", "Cautious");
 			emotionDictionary.Add("Body2", "Fear|Stress Signal");
@@ -306,6 +315,7 @@ public class EmotionLogic : MonoBehaviour {
 	}
 
 	public void ReloadScene() {
+		EmotionLogicEngine.resetEmotionFrequency();
 		Application.LoadLevel(Application.loadedLevel);
 	}
 }
