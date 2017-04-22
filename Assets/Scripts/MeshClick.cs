@@ -8,13 +8,15 @@ public class MeshClick : MonoBehaviour {
 	public Material highlightColor;
 	public Material originalColor;
 
+    public ZoomOut fullview;
+
 	public string clickedPart;
 
 	//highlighting code
 	GameObject currentPart;
 	GameObject lastPart;
 	bool hovering;
-    bool clicked;
+    public bool clicked;
 
 	//booleans based on outside events
 	bool ok = false;
@@ -49,6 +51,7 @@ public class MeshClick : MonoBehaviour {
 	public void CloseAllButtons() {
 		foreach (GameObject b in buttons) {
 			b.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0f, 0f);
+			b.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (-20f, b.GetComponent<RectTransform> ().anchoredPosition.y);
 		}
 	}
 	
@@ -66,6 +69,7 @@ public class MeshClick : MonoBehaviour {
 		}
 		hovering = false;
 
+        
 		if (clicked && ok && !imageDisplaying)
         {
             if (Camera.main.transform.position.z - pos.z > -0.001 && Camera.main.transform.position.z - pos.z < 0.001)
@@ -122,52 +126,67 @@ public class MeshClick : MonoBehaviour {
 				clicked = true;
 			}
 			if (currentPart.transform.parent.gameObject.name == "head") {
-				pos = new Vector3 (0.89f, 1.07f, -0.06f);
+				pos = new Vector3 (0.93f, 1.07f, -0.06f);
 				Camera.main.transform.rotation = Quaternion.Euler (18.647f, -86.36301f, -7.305f);
 				Camera.main.fieldOfView = 27;
 
+				// Show Buttons
 				setEverythingToZero ();
 				headMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				headMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, headMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.transform.parent.gameObject.name == "legs") {
-				pos = new Vector3 (0.762f, 0.423f, -0.272f);
-				Camera.main.transform.rotation = Quaternion.Euler (7.968f, -78.414f, 0.476f);
+				pos = new Vector3 (1.25f, 0.73f, -0.272f);
+				Camera.main.transform.rotation = Quaternion.Euler (21f, -77.75f, 0.476f);
 
+				// Show Buttons
 				setEverythingToZero ();
 				pawMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				pawMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, pawMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.transform.parent.gameObject.name == "torso") {
-				pos = new Vector3 (0.29f, 0.94f, -0.82f);
+				pos = new Vector3 (0.5f, 1.0f, -0.82f);
 				Camera.main.transform.rotation = Quaternion.Euler (21.932f, -30f, -10.122f);
 				Camera.main.fieldOfView = 35;
 
+				// Show Buttons
 				setEverythingToZero ();
 				bodyMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				bodyMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, bodyMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 				muscleMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector2 (190f, 50f);
+				muscleMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, muscleMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.name == "tail") {
-				pos = dfault;
-				Camera.main.transform.rotation = Quaternion.Euler (-6.172f, -31.007f, -0.426f);
+				pos = new Vector3(-0.5f, 1.19f, -0.94f);
+				Camera.main.transform.rotation = Quaternion.Euler (37.16f, 16.21f, -7.11f);
 
+				// Show Buttons
 				setEverythingToZero ();
 				tailMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				tailMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, tailMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.name == "eyeLeft" || currentPart.name == "eyeRight") {
-				pos = new Vector3 (0.931f, 1.013f, -0.096f);
-				Camera.main.transform.rotation = Quaternion.Euler (18.647f, -86.36301f, -7.305f);
+				pos = new Vector3 (0.98f, 1.11f, 0.06f);
+				Camera.main.transform.rotation = Quaternion.Euler (21.4f, -91.6f, -1.09f);
 
+				// Show Buttons
 				setEverythingToZero ();
 				eyesMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				eyesMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, eyesMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.name == "leftEar" || currentPart.name == "rightEar") {
-				pos = new Vector3 (0.931f, 1.013f, -0.096f);
+				pos = new Vector3 (0.931f, 1.07f, -0.096f);
 				Camera.main.transform.rotation = Quaternion.Euler (18.647f, -86.36301f, -7.305f);
 
+				// Show Buttons
 				setEverythingToZero ();
 				earsMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50);
+				earsMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, earsMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 			} else if (currentPart.name == "mouth") {
-				pos = new Vector3 (0.931f, 1.013f, -0.096f);
-				Camera.main.transform.rotation = Quaternion.Euler (18.647f, -86.36301f, -7.305f);
+				pos = new Vector3 (0.92f, 1.05f, 0.07f);
+				Camera.main.transform.rotation = Quaternion.Euler (21.4f, -91.6f, -1.09f);
 
+				// Show Buttons
 				setEverythingToZero ();
 				lipsMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50f);
+				lipsMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0f, lipsMainButton.GetComponent<RectTransform> ().anchoredPosition.y);
 				tongueMainButton.GetComponent<RectTransform> ().sizeDelta = new Vector3 (190f, 50f);
-				tongueMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (0f, -200f); //.position = new Vector3 (0f, -20f);
+				tongueMainButton.GetComponent<RectTransform> ().anchoredPosition = new Vector3 (0f, -180f); //.position = new Vector3 (0f, -20f);
 			}
 		}
     }

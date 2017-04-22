@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class EmotionLogic : MonoBehaviour {
 
 	public Text resultText; 
+	public Text resultTextEmotion;
 	public static List<string> listOfPossibleEmotions = new List<string>();
 	public static List<Attribute> listOfAttributes = new List<Attribute> ();
 	public static Dictionary<string, string[]> behavioralQuestions = new Dictionary<string, string[]> ();
@@ -14,12 +15,15 @@ public class EmotionLogic : MonoBehaviour {
 
 	public GameObject behaviorQuestions;
 
+	public bool displayResult = false;
 	public static bool updated = false;
 	public bool askQuestions = false;
 	public static bool behavioralQuestionsAsked = false;
 	public bool debugBool = false;
 
 	public GameObject meshClick;
+
+	public GameObject resultPictureGO;
 
 	public int thisCount;
 	public static class EmotionLogicEngine {
@@ -116,7 +120,7 @@ public class EmotionLogic : MonoBehaviour {
 
 		// This will address the issue where we have emotionFRequency not reseting after
 		// the scene reloads
-		public static void resetEmotionFrequency() {
+		public static void resetEmotionLogics() {
 			emotionFrequency ["Happy"] = 0;
 			emotionFrequency ["Relaxed & Neutral"] = 0;
 			emotionFrequency ["Playful"] = 0;
@@ -129,6 +133,10 @@ public class EmotionLogic : MonoBehaviour {
 			emotionFrequency ["Alert"] = 0;
 			emotionFrequency ["Aggression"] = 0;
 			emotionFrequency ["Confidence"] = 0;
+
+			listOfPossibleEmotions.Clear ();
+
+			listOfAttributes.Clear ();
 		}
 
 		public static void setEmotionDictionary() {
@@ -136,7 +144,7 @@ public class EmotionLogic : MonoBehaviour {
 			emotionFrequency.Clear();
 			emotionFrequency.Add ("Happy", 0);
 			emotionFrequency.Add ("Relaxed & Neutral", 0);
-			emotionFrequency.Add ("Playfulness", 0);
+			emotionFrequency.Add ("Playful", 0);
 			emotionFrequency.Add ("Curiosity", 0);
 			emotionFrequency.Add ("Cautious", 0);
 			emotionFrequency.Add ("Fear", 0);
@@ -148,14 +156,14 @@ public class EmotionLogic : MonoBehaviour {
 			emotionFrequency.Add ("Arousal", 0);
 
 			// For some reason this prevents errors.
-			resetEmotionFrequency();
+			resetEmotionLogics();
 
 
 			// Behavior
 			behavioralQuestions.Clear();
 			behavioralQuestions.Add("Happy", new string[]{"Panting", "Relaxed", "Tail Thumping on the floor", "Lying with one paw tucked under"});
 			behavioralQuestions.Add("Relaxed & Neutral", new string[]{"Weight flat on feet"});
-			behavioralQuestions.Add("Playfulness", new string[]{"Jerky and bouncy, bounce around in exaggerated twists and turns", "Dodge around you", "Paw at you", "Jump on you", "Front body lwoered by bent forepaws"});
+			behavioralQuestions.Add("Playful", new string[]{"Jerky and bouncy, bounce around in exaggerated twists and turns", "Dodge around you", "Paw at you", "Jump on you", "Front body lwoered by bent forepaws"});
 			behavioralQuestions.Add("Curiosity", new string[]{"Relaxed but concentrating", "Use of paws, nose and mouth", "Engagement in activity"});
 			behavioralQuestions.Add("Cautious", new string[]{"Concentrating"});
 			behavioralQuestions.Add("Fear", new string[]{"Brief and indirect eye contact", "Hiding"});
@@ -217,12 +225,15 @@ public class EmotionLogic : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		EmotionLogicEngine.setEmotionDictionary ();
+		resultPictureGO.GetComponent<RawImage>().enabled = false;
+		askQuestions = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		debugBool = behavioralQuestionsAsked;
 		if (updated == true) {
+			
 			resultText.GetComponent<Text> ().text = "";
 
 			foreach (string s in listOfPlausibleEmotions) {
@@ -243,6 +254,7 @@ public class EmotionLogic : MonoBehaviour {
 			}
 
 			// As soon as an emotion is added to a list of plausible emotions, prompt the user with behavioral questions
+			// Unless there are only one pluasible emotion
 			if (askQuestions == true) {
 				// change this number to 2
 				if (listOfPlausibleEmotions.Count > 1) {
@@ -268,9 +280,8 @@ public class EmotionLogic : MonoBehaviour {
 				}
 				else {
 					meshClick.GetComponent<MeshClick> ().CloseAllButtons ();
-					resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (400f, 300f);
 					foreach (string s in listOfPlausibleEmotions) {
-						resultText.GetComponent<Text> ().text += (s + ", ");
+						ShowResult (s);
 					}
 				}
 			}
@@ -293,7 +304,7 @@ public class EmotionLogic : MonoBehaviour {
 				foreach (string e in behavioralQuestions.Keys) {
 					string[] listBehavior = behavioralQuestions [e];
 					for (int x = 0; x < listBehavior.Length; x++) {
-						if (listBehavior [x].Equals (b)) {
+						if (listBehavior [x].Equals (b)) { //Error?
 							finalEmotionCount [e] += 1;
 						}
 					}
@@ -309,13 +320,53 @@ public class EmotionLogic : MonoBehaviour {
 				}
 			}
 
-			resultText.GetComponent<Text> ().text = (largestEmotion);
-			resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (300f, 300f);
+			// This is where we display our results picture
+			if (largestEmotion.Equals ("") == false) {
+				ShowResult (largestEmotion);
+			}
 		}
 	}
 
+	public void ShowResult(string largestEmotion) {
+		displayResult = true;
+
+		resultPictureGO.GetComponent<RawImage>().enabled = true;
+		string displayString = "";
+		if (largestEmotion.Equals ("Happy")) {
+			displayString = "\n" + "The dog is happy and relaxed. He or she might move in a relaxed, easy way, and will encourage you to play and share their happiness.";
+		} else if (largestEmotion.Equals ("Relaxed & Neutral")) {
+			displayString = "\n" + "The dog is relaxed and reasonably content. Such a dog is unconcerned and unthreatened by any activities going on in his immediate environment and is usually approachable.";
+		} else if (largestEmotion.Equals ("Playful")) {
+			displayString = "\n" + "Here we have the basic invitation to play. It may be accompanied by excited barking or playful attacks and retreats. This set of signals may be used as a sort of \"punctuation mark\" to indicate that any previous rough behaviour was not meant as a threat or challenge.";
+		} else if (largestEmotion.Equals ("Curiosity")) {
+			displayString = "\n" + "The dog's weight will be back on his rear legs, ready to flee quickly if the need should arise.";
+		} else if (largestEmotion.Equals ("Cautious")) {
+			displayString = "\n" + "The dog might have confidence issues. Maybe the dog needs to overcome his or her fears. This dog is definitely unconfortable.";
+		} else if (largestEmotion.Equals ("Fear")) {
+			displayString = "\n" + "This dog is somewhat fearful and is offering signs of submission. These signals are designed to pacify the individual who is of higher social status or whom the dog sees as potentially threatening, in order to avoid any further challenges and prevent conflict.";
+		} else if (largestEmotion.Equals ("Anxiety")) {
+			displayString = "\n" + "Please remember: It is a GOOD THING that a dog shows you that he is anxious or uncomfortable, rather than going straight to a bite. If you observe one paw raised or the half moon eye, the dog just wants to be left alone.";
+		} else if (largestEmotion.Equals ("Stress Signal")) {
+			displayString = "\n" + "This dog is under either social or environmental stress. These signals, however, are a general \"broadcast\" of his state of mind and are not being specifically addressed to any other individual";
+		} else if (largestEmotion.Equals ("Alert")) {
+			displayString = "\n" + "If the dog has detected something of interest, or something unknown, these signals communicate that he is now alert and paying attention while he is assessing the situation to determine if there is any threat or if any action should be taken.";
+		} else if (largestEmotion.Equals ("Aggression")) {
+			displayString = "\n" + "This is a very dominant and confident animal. Here he or she is not only expressing his or her social dominance, but is also threatening that he will act aggressively if he is challenged.";
+		} else if (largestEmotion.Equals ("Confidence")) {
+			displayString = "\n" + "This dog trusts his own abilities and judgment, as well as his owner.  He is not needy, unstable nor fearful.";
+		} else if (largestEmotion.Equals ("Arousal")) {
+			displayString = "\n" + "Arousal is how responsive your dog is to events occurring from you cue and the environment. Arousal is cumulative and doesn't go down quickly. At a certain threshhold, you may see overarousal or fear responses to relatively mild triggers of fear and anxiety"; 
+		}
+
+		resultTextEmotion.GetComponent<Text> ().text = (largestEmotion);
+		resultTextEmotion.GetComponent<RectTransform> ().sizeDelta = new Vector2 (800f, 350f);
+
+		resultText.GetComponent<Text> ().text = (displayString);
+		resultText.GetComponent<RectTransform> ().sizeDelta = new Vector2 (800f, 350f);
+	}
+
 	public void ReloadScene() {
-		EmotionLogicEngine.resetEmotionFrequency();
+		EmotionLogicEngine.resetEmotionLogics();
 		Application.LoadLevel(Application.loadedLevel);
 	}
 }

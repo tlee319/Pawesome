@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ZoomOut : MonoBehaviour {
 
     public Button fullView;
     public Camera main;
 	public GameObject behaviorQuestions;
+    public bool clicked;
+
+    public MeshClick zoom;
 
     private Vector3 pos;
-    private bool clicked;
     private Vector3 camPos;
     private bool moving;
 
@@ -32,6 +35,10 @@ public class ZoomOut : MonoBehaviour {
             moving = false;
         }
         camPos = main.transform.position;
+        if (zoom.clicked)
+        {
+            clicked = false;
+        }
         if (clicked)
         {
             main.transform.position = Vector3.Lerp(main.transform.position, pos, 5 * Time.deltaTime);
@@ -45,12 +52,13 @@ public class ZoomOut : MonoBehaviour {
 
     }
 
+    
+
     private void TaskOnClick()
     {
-		if (clicked == true) {
-			clicked = false;
-		} else if (!moving) {
+		
+            zoom.clicked = false;
 			clicked = true;
-		}
+		
     }
 }

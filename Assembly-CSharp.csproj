@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\EmotionLogic.cs" />
      <Compile Include="Assets\Scripts\MeshClick.cs" />
      <Compile Include="Assets\Scripts\SelectColorChange.cs" />
+     <Compile Include="Assets\Scripts\StartOverResultScript.cs" />
      <Compile Include="Assets\Scripts\Startup.cs" />
      <Compile Include="Assets\Scripts\ToggleScript.cs" />
      <Compile Include="Assets\Scripts\ZoomOut.cs" />
