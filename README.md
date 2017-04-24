@@ -17,10 +17,6 @@ __Known Bugs__
 * Poor portrait view design for UI (this may depend on the device).
 * Start Over option on Result Screen is grey in portrait view
 
-## Builds
-The __/Builds__ subdirectory is not in the repository due to its large size. The user may follow the following link to download pre-built versions of the application
-* [Pre-Built Applications](https://drive.google.com/file/d/0B4NfAiWAGHcrRHl4MHpFQ2ZVWGs/view?usp=sharing)
-
 ## Prerequisites
 __Software needed__
 
@@ -35,6 +31,10 @@ Xcode Download
 
 * [Xcode](https://developer.apple.com/xcode/downloads/) - Download for Xcode
 
+## Builds
+The __/Builds__ subdirectory is not in the repository due to its large size. The user may follow the following link to download pre-built versions of the application
+* [Pre-Built Applications](https://drive.google.com/file/d/0B4NfAiWAGHcrRHl4MHpFQ2ZVWGs/view?usp=sharing)
+
 ## Install Guide
 The customer needs to have Unity installed to view the application.
 
@@ -42,7 +42,7 @@ We have already provided built versions of both the Unity and iOS versions, whic
 
 If the customer wishes to build the application themselves for either application, they can follow the instructions below.
 
-__Unity Download Instructions__
+### Unity Download Instructions 
 
 1. After downloading Unity, the customer should then pull the files from the repository.
 2. Open up the project in Unity by clicking "Open" on the top right of the Unity startup screen.
@@ -58,7 +58,8 @@ File > Build Settings > Select Open Scenes > Select PC/Mac > Build and Run
 ```
 8. Save the build in the newly created __Builds__ folder.
 
-__iOS Build__
+### iOS Build
+
 In order to give our customer full usage of the iOS application, please do the following...
 
 * Follow steps 1-6 in the Unity Download section and then do the following:
@@ -75,7 +76,7 @@ File > Build Settings
 
 The application is now built in the iOS folder located in the __\Builds__ subdirectory.
 
-## Running with XCode
+### Running with XCode
 1. Double click the .xcodeproj file to open the project with Xcode.
   * This will open up Xcode with the application. 
 2. Once Xcode project is built, locate the __Project Navigator__ icon indicated by an image of a folder.
