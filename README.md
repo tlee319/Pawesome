@@ -17,6 +17,10 @@ __Known Bugs__
 * Poor portrait view design for UI (this may depend on the device).
 * Start Over option on Result Screen is grey in portrait view
 
+## Builds
+The __/Builds__ subdirectory is not in the repository due to its large size. The user may follow the following link to download pre-built versions of the application
+* [Pre-Built Applications](https://drive.google.com/file/d/0B4NfAiWAGHcrRHl4MHpFQ2ZVWGs/view?usp=sharing)
+
 ## Prerequisites
 __Software needed__
 
@@ -29,15 +33,14 @@ Unity Download
 
 Xcode Download
 
-* [Xcode](https://developer.apple.com/xcode/downloads/
-) - Download for Xcode
+* [Xcode](https://developer.apple.com/xcode/downloads/) - Download for Xcode
 
 ## Install Guide
 The customer needs to have Unity installed to view the application.
 
-We have already provided built versions of both the Unity and iOS versions located in the /Builds subdirectory.
+We have already provided built versions of both the Unity and iOS versions, which you can find in the __Builds__ section above.
 
-However, if the customer wishes to build the application themselves for either application, they can follow the instructions below.
+If the customer wishes to build the application themselves for either application, they can follow the instructions below.
 
 __Unity Download Instructions__
 
@@ -48,15 +51,17 @@ __Unity Download Instructions__
 ```
 Assets/Scenes/Dog Emotion
 ```
-6. The customer may then build the application in Unity with
+6. Create a subfolder called "__Builds__" in the parent folder.
+7. The customer may then build the application in Unity with
 ```
 File > Build Settings > Select Open Scenes > Select PC/Mac > Build and Run
 ```
+8. Save the build in the newly created __Builds__ folder.
 
 __iOS Build__
 In order to give our customer full usage of the iOS application, please do the following...
 
-* Follow steps 1-5 in the Unity Download section and then do the following:
+* Follow steps 1-6 in the Unity Download section and then do the following:
 
 1. After loading the scene, navigate to the Build Settings screen.
 ```
