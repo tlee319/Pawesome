@@ -51,7 +51,7 @@ If the customer wishes to build the application themselves for either applicatio
 ```
 Assets/Scenes/Dog Emotion
 ```
-6. Create a subfolder called "__Builds__" in the parent folder.
+6. Create a subfolder called "__Builds__" in the root directory.
 7. The customer may then build the application in Unity with
 ```
 File > Build Settings > Select Open Scenes > Select PC/Mac > Build and Run
