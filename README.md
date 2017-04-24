@@ -20,9 +20,8 @@ __Known Bugs__
 ## Prerequisites
 __Software needed__
 
-* Unity 
-* XCode (for iOS building/application)
-
+* Unity (version 5.5.2 or above)
+* Xcode (for iOS building/application)
 
 Unity Download
 
