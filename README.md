@@ -91,7 +91,8 @@ Once the iOS version is built, the customer can input their own Developer Licens
 The customer will then have full license over the application. 
 
 ## Troubleshooting
-__In case of a "Build Fail" during the iOS build process__
+__In case of a "Build Fail" during the iOS build process...__
+
 Refer to [this guide](https://unity3d.com/learn/tutorials/topics/mobile-touch/building-your-unity-game-ios-device-testing) in order to fix any build errors.
 * Begin at the "Adding your Apple ID to Xcode" section.
 * If the Build Errors are due to __signing__, refer to steps 2-6 of the _Running with Xcode_ section
