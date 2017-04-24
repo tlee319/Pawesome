@@ -51,7 +51,7 @@ public class MeshClick : MonoBehaviour {
 	public void CloseAllButtons() {
 		foreach (GameObject b in buttons) {
 			b.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0f, 0f);
-			b.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (-20f, b.GetComponent<RectTransform> ().anchoredPosition.y);
+			b.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (-50f, b.GetComponent<RectTransform> ().anchoredPosition.y);
 		}
 	}
 	
@@ -192,6 +192,7 @@ public class MeshClick : MonoBehaviour {
     }
 
 	public void setEverythingToZero() {
+		CloseAllButtons ();
 		foreach (GameObject b in buttons) {
 			b.GetComponent<RectTransform> ().sizeDelta = new Vector2 (0f, 0f);
 		}

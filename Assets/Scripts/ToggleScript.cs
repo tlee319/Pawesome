@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+// Created by Jarrod Blanton
 public class ToggleScript : MonoBehaviour {
 
 	public Toggle[] toggles;

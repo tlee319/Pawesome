@@ -266,7 +266,12 @@ public class EmotionLogic : MonoBehaviour {
 
 					// Dynamically create buttons for behavioral questions
 					foreach (string emotion in listOfPlausibleEmotions) {
-						firstButton.transform.GetComponentInChildren<Text> ().text += emotion + ", ";
+						// Text formatting
+						if (emotion == listOfPlausibleEmotions [listOfPlausibleEmotions.Count - 1]) {
+							firstButton.transform.GetComponentInChildren<Text> ().text += emotion;
+						} else {
+							firstButton.transform.GetComponentInChildren<Text> ().text += emotion + ", ";
+						}
 						foreach (string question in behavioralQuestions[emotion]) {
 							GameObject newButton = (GameObject)Instantiate (firstButton, behaviorQuestions.transform);
 							newButton.transform.GetComponentInChildren<Text> ().text = question;
