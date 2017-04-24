@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: c03db18fc48f14ae49ff14da7a6909b8
+timeCreated: 1489516749
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: imagePlane1
+    100004: imagePlane2
+    100006: left1
+    100008: pCube1
+    100010: pCube2
+    100012: pCube3
+    100014: pCube4
+    100016: pCube5
+    100018: pCube6
+    100020: polyExtrudeFace10Curve
+    100022: polyExtrudeFace11Curve
+    100024: polyExtrudeFace12Curve
+    100026: polyExtrudeFace13Curve
+    100028: polyExtrudeFace14Curve
+    100030: polyExtrudeFace15Curve
+    100032: polyExtrudeFace16Curve
+    100034: polyExtrudeFace17Curve
+    100036: polyExtrudeFace18Curve
+    100038: polyExtrudeFace19Curve
+    100040: polyExtrudeFace1Curve
+    100042: polyExtrudeFace20Curve
+    100044: polyExtrudeFace21Curve
+    100046: polyExtrudeFace22Curve
+    100048: polyExtrudeFace23Curve
+    100050: polyExtrudeFace24Curve
+    100052: polyExtrudeFace25Curve
+    100054: polyExtrudeFace26Curve
+    100056: polyExtrudeFace27Curve
+    100058: polyExtrudeFace28Curve
+    100060: polyExtrudeFace29Curve
+    100062: polyExtrudeFace2Curve
+    100064: polyExtrudeFace30Curve
+    100066: polyExtrudeFace3Curve
+    100068: polyExtrudeFace4Curve
+    100070: polyExtrudeFace5Curve
+    100072: polyExtrudeFace6Curve
+    100074: polyExtrudeFace7Curve
+    100076: polyExtrudeFace8Curve
+    100078: polyExtrudeFace9Curve
+    100080: transform1
+    100082: transform2
+    100084: transform3
+    100086: transform4
+    100088: transform5
+    400000: //RootNode
+    400002: imagePlane1
+    400004: imagePlane2
+    400006: left1
+    400008: pCube1
+    400010: pCube2
+    400012: pCube3
+    400014: pCube4
+    400016: pCube5
+    400018: pCube6
+    400020: polyExtrudeFace10Curve
+    400022: polyExtrudeFace11Curve
+    400024: polyExtrudeFace12Curve
+    400026: polyExtrudeFace13Curve
+    400028: polyExtrudeFace14Curve
+    400030: polyExtrudeFace15Curve
+    400032: polyExtrudeFace16Curve
+    400034: polyExtrudeFace17Curve
+    400036: polyExtrudeFace18Curve
+    400038: polyExtrudeFace19Curve
+    400040: polyExtrudeFace1Curve
+    400042: polyExtrudeFace20Curve
+    400044: polyExtrudeFace21Curve
+    400046: polyExtrudeFace22Curve
+    400048: polyExtrudeFace23Curve
+    400050: polyExtrudeFace24Curve
+    400052: polyExtrudeFace25Curve
+    400054: polyExtrudeFace26Curve
+    400056: polyExtrudeFace27Curve
+    400058: polyExtrudeFace28Curve
+    400060: polyExtrudeFace29Curve
+    400062: polyExtrudeFace2Curve
+    400064: polyExtrudeFace30Curve
+    400066: polyExtrudeFace3Curve
+    400068: polyExtrudeFace4Curve
+    400070: polyExtrudeFace5Curve
+    400072: polyExtrudeFace6Curve
+    400074: polyExtrudeFace7Curve
+    400076: polyExtrudeFace8Curve
+    400078: polyExtrudeFace9Curve
+    400080: transform1
+    400082: transform2
+    400084: transform3
+    400086: transform4
+    400088: transform5
+    2300000: pCube6
+    3300000: pCube6
+    4300000: pCube6
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
